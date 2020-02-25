@@ -17,6 +17,7 @@ package cse360assign2;
  * There is additional get method which being used to retrieve elements and used to work with the other methods 
  *  
  */
+import java.util.*;
 
 public class SimpleList 
 {
@@ -52,7 +53,6 @@ public class SimpleList
 		}
 		else if(count < 10)
 		{
-			//if(count == 10) count--;
 			for(int index = count; index > 0; index--) 
 			{
 				list[index] = list[index - 1];
@@ -79,9 +79,9 @@ public class SimpleList
 			
 		}
 		
-	}
 	
 	/**
+	 * add an element at the end of the array
 	 * 
 	 */
 	
@@ -113,6 +113,11 @@ public class SimpleList
 	public int first()
 	{
 		return list[0];
+	}
+	
+	public int size() 
+	{
+		return list.length;
 	}
 	
 	
@@ -151,7 +156,7 @@ public class SimpleList
 	     } 
 		
 		//Look for empty slots in the array
-		for(int index = 0; index < list.length; index++) 
+		for(int slot = 0; slot < list.length; slot ++) 
 		{
 			if(index == 0)
 				emptySpaces++;
