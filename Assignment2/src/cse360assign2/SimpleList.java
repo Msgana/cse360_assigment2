@@ -23,8 +23,7 @@ public class SimpleList
 	
 	private int [] list;
 	private int count;
-	
-	
+
 	/**
 	 * Constructs and initializes an integer array containing 10 elements
 	 * @param list     An array with size of 10 elements
@@ -51,21 +50,70 @@ public class SimpleList
 			list[0] = input;
 			count++;
 		}
-		else 
+		else if(count < 10)
 		{
-			if(count == 10) count--;
+			//if(count == 10) count--;
 			for(int index = count; index > 0; index--) 
 			{
 				list[index] = list[index - 1];
 			}
 			list[0] = input;
 			count++;
+		}
+		else 
+		{
+			//increase the size of the array by 50% (by 5)
+			int increaseBy = list.length/2;
+			
+			list = Arrays.copyOf(list, (list.length + increaseBy));
+			
+			//add elements in the new array
+			for(int index = count; index >= 1; index--) 
+			{
+				list[index] = list[index - 1];
+			}
+			list[0] = input;
+			count++;
+		}
 			
 			
 		}
 		
 	}
 	
+	/**
+	 * 
+	 */
+	
+	public void append(int input) 
+	{
+		if(count == 0) 
+		{
+			list[0] = input;
+			count++;
+		}
+		else if(count < 10)
+		{
+			//if(count == 10) count--;
+			for(int index = 1; index <= count; index++) 
+			{
+				list[index] = list[index - 1];
+			}
+			list[count + 1] = input;
+			count++;
+		}
+	} 
+	
+	
+	
+	/**
+	 *  Returns the first element
+	 * @return
+	 */
+	public int first()
+	{
+		return list[0];
+	}
 	
 	
 	/**
@@ -89,7 +137,10 @@ public class SimpleList
 	public void remove(int input) 
 	{	
 		int index = search(input);
+		int emptySpaces = 0;     // number of empty spaces
+		int limit = (list.length)/4;
 		
+		// loop through and remove the element when found 
 		if (index != -1) 
 		{
 		    for (index = 0; index < count; index ++) 
@@ -98,6 +149,18 @@ public class SimpleList
 		    }
 		         count--;
 	     } 
+		
+		//Look for empty slots in the array
+		for(int index = 0; index < list.length; index++) 
+		{
+			if(index == 0)
+				emptySpaces++;
+		}
+		
+		// decrease the array size by 25 percent 
+		if(emptySpaces > limit)
+			list = Arrays.copyOf(list, (list.length - limit));
+			count = count - limit; // update count 
 		
 	}
 	
@@ -110,6 +173,27 @@ public class SimpleList
 	public int count() 
 	{
 		return count;
+	}
+	
+	
+	
+	/**
+	 * Searches a given element from the list array and returns the index
+	 * if element is not found return -1
+	 * @param input
+	 * @return index
+	 */
+	public int search(int input) 
+	{
+		for(int index = 0; index <= count;index++) 
+		{
+			if(input == list[index]) 
+			{
+				return index;
+			}
+		}
+	 
+		return -1;
 	}
 	
 	
@@ -140,26 +224,5 @@ public class SimpleList
 		return temp;
 	}
 	
-	
-	
-	/**
-	 * Searches a given element from the list array and returns the index
-	 * if element is not found return -1
-	 * @param input
-	 * @return index
-	 */
-	public int search(int input) 
-	{
-		for(int index = 0; index <= count;index++) 
-		{
-			if(input == list[index]) 
-			{
-				return index;
-			}
-		}
-	 
-		return -1;
-	}
-
 }
 
