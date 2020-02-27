@@ -3,7 +3,6 @@ package cse360assign2;
 /**
  * 
  * @author Misgana Gebremariam
- *  
  * @Class_ID: 389
  * @Date: 02/10/2020
  * CSE360 Assignment 1
@@ -62,22 +61,34 @@ public class SimpleList
 		}
 		else 
 		{
-			//increase the size of the array by 50% (by 5)
-			int increaseBy = list.length/2;
-			
-			list = Arrays.copyOf(list, (list.length + increaseBy));
-			
-			//add elements in the new array
-			for(int index = count; index >= 1; index--) 
+			if(count < list.length) 
 			{
-				list[index] = list[index - 1];
+				//add elements in the new array
+				for(int index = count; index >= 1; index--) 
+				{
+					list[index] = list[index - 1];
+				}
+				list[0] = input;
+				count++;
 			}
-			list[0] = input;
-			count++;
+			else 
+			{
+				//increase the size of the array by 50% (by 5)
+				int increaseBy = list.length/2;
+				
+				list = Arrays.copyOf(list, (list.length + increaseBy));
+				
+				for(int index = count; index >= 1; index--) 
+				{
+					list[index] = list[index - 1];
+				}
+				list[0] = input;
+				count++;
+			}
 		}
 			
 			
-		}
+	 }
 		
 	
 	/**
@@ -148,7 +159,7 @@ public class SimpleList
 		// loop through and remove the element when found 
 		if (index != -1) 
 		{
-		    for (index = 0; index < count; index ++) 
+		    for (index = 0; index < list.length; index ++) 
 		    {
 		         list[index] = list[index + 1];
 		    }
