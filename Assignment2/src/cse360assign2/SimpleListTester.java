@@ -301,6 +301,8 @@ class SimpleListTester {
 		int actual = searchTest.search(5);
 		
 		assertEquals(expected,actual);
+		System.out.println(searchTest.toString());
+		System.out.println(searchTest.search(5));
 		
 	}
 	
@@ -320,6 +322,16 @@ class SimpleListTester {
 		searchTestFail.add(8);
 		searchTestFail.add(9);
 		searchTestFail.add(10);
+		searchTestFail.add(1);
+		searchTestFail.add(2);
+		searchTestFail.add(3);
+		searchTestFail.add(4);
+		searchTestFail.add(5);
+		searchTestFail.add(6);
+		searchTestFail.add(3);
+		searchTestFail.add(8);
+		searchTestFail.add(9);
+		searchTestFail.add(10);
 		
 
 		
@@ -329,6 +341,8 @@ class SimpleListTester {
 		int actual = searchTestFail.search(4);
 		
 		assertNotEquals(expected,actual);
+		System.out.println(searchTestFail.toString());
+		System.out.println(searchTestFail.search(4));
 		
 	}
 
