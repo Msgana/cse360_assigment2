@@ -17,6 +17,7 @@ package cse360assign2;
  *  
  */
 import java.util.*;
+import java.util.Arrays;
 
 public class SimpleList 
 {
@@ -153,7 +154,7 @@ public class SimpleList
 	public void remove(int input) 
 	{	
 		int index = search(input);
-		int emptySpaces = 0;     // number of empty spaces
+		int emptySpaces = list.length - count ;     // number of empty spaces
 		int limit = (list.length)/4;
 		
 		// loop through and remove the element when found 
@@ -166,10 +167,19 @@ public class SimpleList
 		         count--;
 	     } 
 		
+		if(emptySpaces > limit) 
+		{
+			list = Arrays.copyOf(list, (list.length - limit));
+			count = count - limit; // update count 
+		}
+		
+		
+		/*
+		
 		//Look for empty slots in the array
 		for(int slot = 0; slot < list.length; slot ++) 
 		{
-			if(index == 0)
+			if(list[slot] == 0)
 				emptySpaces++;
 		}
 		
@@ -177,7 +187,7 @@ public class SimpleList
 		if(emptySpaces > limit)
 			list = Arrays.copyOf(list, (list.length - limit));
 			count = count - limit; // update count 
-		
+		 */
 	}
 	
 
@@ -201,7 +211,7 @@ public class SimpleList
 	 */
 	public int search(int input) 
 	{
-		for(int index = 0; index <= count;index++) 
+		for(int index = 0; index <= list.length;index++) 
 		{
 			if(input == list[index]) 
 			{
