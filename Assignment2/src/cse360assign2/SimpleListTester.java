@@ -37,8 +37,6 @@ class SimpleListTester {
    
 
 		assertEquals(addTest.get(0), 5);
-		System.out.println(addTest.toString());
-		System.out.println(addTest.size());
 		
 		
 	}
@@ -76,21 +74,25 @@ class SimpleListTester {
 		removeTest.add(7);
 		removeTest.add(8);
 		removeTest.add(9);
-		//removeTest.add(10);
-		/*removeTest.add(11);
+		removeTest.add(10);
+		removeTest.add(11);
 		removeTest.add(12);
 		removeTest.add(13);
 		removeTest.add(14);
 		removeTest.add(15);
 		removeTest.add(16);
-		*/
+		removeTest.add(16);
+	
 		
 	    // remove an element before Testing
 		removeTest.remove(3);
 		
+		int expected = 16;
+		int actual = removeTest.get(0);
+		
 		//Pass Test Case
-		assertEquals(removeTest.get(0),9);
-		System.out.println(removeTest.toString());
+		assertEquals(expected,actual);
+
 		
 	}
 	
@@ -104,9 +106,17 @@ class SimpleListTester {
 		removeTestFail.add(1);
 		removeTestFail.add(3);
 		removeTestFail.add(4);
+		removeTestFail.add(1);
+		removeTestFail.add(3);
+		
+		removeTestFail.add(1);
+		removeTestFail.add(3);
+		removeTestFail.add(4);
+		removeTestFail.add(1);
+		removeTestFail.add(3);
 		
 	    // remove an element at index 0 (4)
-		removeTestFail.remove(4);
+		removeTestFail.remove(3);
 		
 		int expected = 4;
 		int actual = removeTestFail.get(0);
@@ -114,7 +124,7 @@ class SimpleListTester {
 		
 		//Fail Test Case
 		assertNotEquals(expected,actual);
-
+		
 		
 	}
 	
@@ -124,23 +134,24 @@ class SimpleListTester {
 		
 		SimpleList appendTest  = new SimpleList();
 		//added an element
-		appendTest.add(3);
-		appendTest.add(3);
-		appendTest.add(3);
-		appendTest.add(3);
-		appendTest.add(3);
-		appendTest.add(10);
+		appendTest.append(3);
+		appendTest.append(9);
+		appendTest.append(3);
+		appendTest.append(3);
+		appendTest.append(3);
+		appendTest.append(5);
+		appendTest.append(5);
+		
+		
 		
 	
-				
-				
-		
 		// Pass Test Case 
-		int expected = 10;
-		int actual =  10;
+		int expected = 3;
+		int actual = appendTest.get(0);
 		
 		
 		assertEquals(expected,actual);
+		System.out.println(appendTest.toString());
 		
 	}
 	
@@ -148,20 +159,19 @@ class SimpleListTester {
 	public void appendTestFail() 
 	{
 		
-		SimpleList countTestFail  = new SimpleList();
+		SimpleList appendTestFail  = new SimpleList();
 		
-		countTestFail.add(3);
-		countTestFail.add(3);
-		countTestFail.add(3);
-		countTestFail.add(3);
-		countTestFail.add(3);
-		countTestFail.add(3);
-		countTestFail.add(3);
+		appendTestFail.append(3);
+		appendTestFail.append(3);
+		appendTestFail.append(3);
+		appendTestFail.append(3);
+		appendTestFail.append(3);
+		appendTestFail.append(5);
 		
 		
 		//Fail Test Case
 		int expected = 6;
-		int actual = countTestFail.count();
+		int actual = appendTestFail.get(3);
 		
 		assertNotEquals(expected, actual);
 		
@@ -301,8 +311,7 @@ class SimpleListTester {
 		int actual = searchTest.search(5);
 		
 		assertEquals(expected,actual);
-		System.out.println(searchTest.toString());
-		System.out.println(searchTest.search(5));
+		
 		
 	}
 	
@@ -341,8 +350,7 @@ class SimpleListTester {
 		int actual = searchTestFail.search(4);
 		
 		assertNotEquals(expected,actual);
-		System.out.println(searchTestFail.toString());
-		System.out.println(searchTestFail.search(4));
+		
 		
 	}
 
