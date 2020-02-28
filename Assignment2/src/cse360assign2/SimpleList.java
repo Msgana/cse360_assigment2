@@ -109,7 +109,7 @@ public class SimpleList
 		{
 			if(count < 10) 
 			{
-				list[count + 1] = input;
+				list[count] = input;
 				count++;
 				
 			}
