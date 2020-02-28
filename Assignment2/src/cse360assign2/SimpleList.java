@@ -42,6 +42,7 @@ public class SimpleList
 	 * Adds elements to index 0 of list array
 	 * Count will be incremented by one each time an element is added
 	 * Existing elements will shift to the right by one
+	 * Increases the array size by 50 percent if the array is full when adding element
 	 * @param input
 	 */
 	public void add(int input) 
@@ -104,28 +105,62 @@ public class SimpleList
 			list[0] = input;
 			count++;
 		}
-		else if(count < 10)
+		else
 		{
-			//if(count == 10) count--;
-			for(int index = 1; index <= count; index++) 
+			if(count < 10) 
 			{
-				list[index] = list[index - 1];
+				list[count + 1] = input;
+				count++;
+				
 			}
-			list[count + 1] = input;
-			count++;
+			else 
+			{
+				//increase the size of the array by 50% 
+				int increaseBy = list.length/2;
+				
+				list = Arrays.copyOf(list, (list.length + increaseBy));
+				
+				list[count + 1] = input;
+				count++;
+			}
+			
 		}
+		
 	} 
 	
 	
 	
 	/**
-	 *  Returns the first element
+	 *  Returns the first element otherwise it will return -1
 	 * @return
 	 */
 	public int first()
 	{
-		return list[0];
+		if(count > 0) 
+		{
+			return list[0];
+		}
+		return -1;
+		
 	}
+	/***
+	 *  Returns the last element of the List Array
+	 * @return
+	 */
+	public int last()
+	{
+		if(count > 0) 
+		{
+			return list[count];
+		}
+		return -1;
+		
+	}
+	
+	/**
+	 *  Returns the size of the List Array
+	 * @return
+	 */
 	
 	public int size() 
 	{
@@ -147,6 +182,7 @@ public class SimpleList
 	
 	/**
 	 * Removes an element with with the lowest index value
+	 * Decrease the array size by 25%  if there are empty slots
 	 * if there are multiple same elements 
 	 * Returns -1 if the element does not exits
 	 * @param input 
@@ -154,40 +190,26 @@ public class SimpleList
 	public void remove(int input) 
 	{	
 		int index = search(input);
-		int emptySpaces = list.length - count ;     // number of empty spaces
-		int limit = (list.length)/4;
 		
 		// loop through and remove the element when found 
 		if (index != -1) 
 		{
-		    for (index = 0; index < list.length; index ++) 
-		    {
-		         list[index] = list[index + 1];
-		    }
-		         count--;
+		
+		     list[index] = list[index + 1];
+		     count--; 
+		        
 	     } 
 		
-		if(emptySpaces > limit) 
+		int emptySpaces = list.length - count ;     // number of empty spaces
+		int limit = (list.length)/4;
+		
+		if(emptySpaces >= limit && count > 10) 
 		{
-			list = Arrays.copyOf(list, (list.length - limit));
-			count = count - limit; // update count 
-		}
+	 	 	list = Arrays.copyOf(list, (list.length - limit));
+	 	 	//count = count - limit; // update count 
+	 	}
 		
 		
-		/*
-		
-		//Look for empty slots in the array
-		for(int slot = 0; slot < list.length; slot ++) 
-		{
-			if(list[slot] == 0)
-				emptySpaces++;
-		}
-		
-		// decrease the array size by 25 percent 
-		if(emptySpaces > limit)
-			list = Arrays.copyOf(list, (list.length - limit));
-			count = count - limit; // update count 
-		 */
 	}
 	
 
